@@ -12,13 +12,13 @@ export interface navbarProps {
 const NavBar: React.FC<navbarProps> = ({ userName }) => {
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [isSignOut, setIsSignOut] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   const handleClick = (url: string) => {
     router.push(url);
   };
 
-  useOnClickOutside(buttonRef, () => setIsSignOut(false));
+  useOnClickOutside(buttonRef, () => setShowDropdown(false));
 
   return (
     <div className="m-navbar">
@@ -39,11 +39,11 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
       <nav className="m-navbar__Right">
         {userName ? (
           <>
-            <Button modifiers="text" onClick={() => setIsSignOut(!isSignOut)} ref={buttonRef}>
+            <Button modifiers="text" onClick={() => setShowDropdown(!showDropdown)} ref={buttonRef}>
               <span>{userName}</span>
-              <Icon name={isSignOut ? 'expand-less' : 'expand-more'} />
+              <Icon name={showDropdown ? 'expand-less' : 'expand-more'} />
             </Button>
-            {isSignOut && (
+            {showDropdown && (
               <div className="m-navbar__Right--dropdown">
                 <Link href="/login">
                   <a className="m-navbar__Right--dropdown-signout">Sign out</a>
