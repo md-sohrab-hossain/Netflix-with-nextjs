@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import Heading from 'components/atom/heading';
-import Banner from 'components/atom/banner';
+import Banner from 'components/molecules/banner';
 
 const Home: NextPage = () => {
   return (

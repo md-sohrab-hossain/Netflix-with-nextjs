@@ -1,10 +1,10 @@
 import { mapModifiers, ModifierProp } from 'libs/component';
-import { Icon, ICON_SHAPES } from './icon';
+import { Icon, ICON_SHAPES } from 'components/atom/icon';
 
 export interface buttonProps {
   title: string;
   modifiers?: ModifierProp<
-    'primary' | 'secondary' | 'third' | 'fourth' | 'postal' | 'upload' | 'transparent' | 'transparent-black' | 'play'
+    'primary' | 'secondary' | 'third' | 'fourth' | 'postal' | 'upload' | 'transparent' | 'transparent-black'
   >;
   className?: string;
   icon?: typeof ICON_SHAPES[number];
