@@ -11,8 +11,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <NavBar userName="sajal@gmail.com" /> */}
-
       <main className="p-home__body">
         <Banner title="Clifford the red dog" subtitle="a very cute dog" imgUrl="/static/background.png" />
       </main>
