@@ -1,0 +1,27 @@
+.a-back-button {
+  height: 50px;
+  width: 100px;
+  background-color: $color-primary-blue;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  clip-path: polygon(100% 100%, 3% 54%, 100% 0);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: $color-base-mantis;
+    a {
+      color: $color-base-black;
+      font-weight: bold;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: $color-text-white;
+  }
+}

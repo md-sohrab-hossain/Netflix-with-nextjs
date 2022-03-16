@@ -1,0 +1,41 @@
+.a-card {
+  text-decoration: none;
+  color: $color-base-black;
+
+  &__container {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    height: 22rem;
+    width: 25rem;
+    padding: 10px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.55);
+      img {
+        opacity: 0.7;
+      }
+    }
+
+    &--header {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 800;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    &--image {
+      img {
+        border-radius: 0.75rem;
+      }
+    }
+  }
+}

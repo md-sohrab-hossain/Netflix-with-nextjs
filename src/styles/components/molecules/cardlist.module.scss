@@ -1,0 +1,18 @@
+.m-card-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .a-card {
+    margin: 0 2rem 0 0;
+
+    @include sp() {
+      margin: 0 0 2rem 0;
+    }
+  }
+
+  @include sp() {
+    flex-direction: column;
+  }
+}

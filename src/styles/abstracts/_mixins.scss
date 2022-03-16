@@ -1,0 +1,33 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin pc() {
+  @media (min-width: ($breakpoint-sp + 1)) {
+    @content;
+  }
+}
+
+@mixin sp() {
+  @media (max-width: $breakpoint-sp) {
+    @content;
+  }
+}
+
+//  Media screen 1025 and above
+@mixin wide-pc {
+  @media (min-width: ($breakpoint-small-pc + 1)) {
+    @content;
+  }
+}
+
+// Media screen 769-1024
+@mixin small-pc() {
+  @media (max-width: $breakpoint-small-pc) and (min-width: ($breakpoint-sp + 1)) {
+    @content;
+  }
+}

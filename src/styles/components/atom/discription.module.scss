@@ -1,0 +1,9 @@
+.a-discription {
+  color: $color-white;
+  font-size: large;
+  margin-bottom: 1rem;
+
+  @include sp() {
+    font-size: 1.2rem;
+  }
+}
