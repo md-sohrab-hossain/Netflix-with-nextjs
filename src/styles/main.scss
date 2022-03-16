@@ -22,6 +22,9 @@
 @import './components/molecules/navbar.module.scss';
 @import './components/molecules/cardlist.module.scss';
 
+//component/organism
+@import './components/organism/layout.module.scss';
+
 //page
 @import './components/pages/home.module.scss';
 @import './components/pages/coffee-store.module.scss';

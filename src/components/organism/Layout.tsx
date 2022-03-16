@@ -7,7 +7,7 @@ export interface layoutProps {
 }
 const Layout: React.FC<layoutProps> = ({ children, title = 'Netflix' }) => {
   return (
-    <div>
+    <div className="o-layout">
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
