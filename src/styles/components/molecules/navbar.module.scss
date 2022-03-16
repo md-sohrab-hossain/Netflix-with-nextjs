@@ -1,0 +1,75 @@
+.m-navbar {
+  width: 100%;
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  color: $color-base-white;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0, rgba(202, 173, 173, 0.2) 58%);
+  z-index: $zindex-navbar;
+  align-items: center;
+  @include flexSpaceBetween;
+
+  &__wrapper {
+    max-width: 60%;
+    min-width: 20%;
+    height: 100%;
+    @include flexSpaceBetween;
+    align-items: center;
+
+    &--logo {
+      margin-left: 4rem;
+
+      @include sp {
+        margin-left: 2rem;
+      }
+    }
+
+    &--items {
+      width: 70%;
+      margin-left: 4rem;
+      display: flex;
+      justify-content: space-evenly;
+
+      &-home,
+      &-myList {
+        list-style-type: none;
+        margin-left: 1rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+        cursor: pointer;
+
+        @include sp {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  &__container {
+    position: relative;
+    margin-right: 2rem;
+
+    &--dropdown {
+      position: absolute;
+      top: 4.5rem;
+      right: 0;
+      height: 3rem;
+      width: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      border-radius: 10px;
+      background-color: rgba(57, 16, 153, 0.761);
+      cursor: pointer;
+      display: none;
+
+      &:hover {
+        background-color: rgba(23, 6, 65, 0.761);
+      }
+      &:active {
+        margin-top: 0.2rem;
+      }
+    }
+  }
+}

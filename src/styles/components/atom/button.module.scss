@@ -123,6 +123,49 @@
     }
   }
 
+  &--text {
+    height: auto;
+    padding: 0;
+    font-size: 16px;
+    color: $color-text-white;
+    text-align: left;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+
+    &:hover {
+      background: transparent;
+    }
+
+    @include sp {
+      font-size: 12px;
+    }
+  }
+
+  &--icon-text {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    height: auto;
+    padding: 0;
+    font-size: 14px;
+    font-weight: xd-font-weight('medium');
+    line-height: 24px;
+    color: $color-text-black;
+    background: transparent;
+    box-shadow: none;
+
+    &:hover {
+      color: $color-primary-purple;
+      text-decoration: none;
+      background: transparent;
+    }
+
+    #{$root}__label {
+      margin-left: 4px;
+    }
+  }
+
   @include sp {
     height: 40px;
 

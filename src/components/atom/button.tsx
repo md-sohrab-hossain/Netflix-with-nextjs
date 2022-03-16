@@ -4,7 +4,16 @@ import { Icon, ICON_SHAPES } from 'components/atom/icon';
 export interface buttonProps {
   title: string;
   modifiers?: ModifierProp<
-    'primary' | 'secondary' | 'third' | 'fourth' | 'postal' | 'upload' | 'transparent' | 'transparent-black'
+    | 'primary'
+    | 'secondary'
+    | 'third'
+    | 'fourth'
+    | 'postal'
+    | 'upload'
+    | 'transparent'
+    | 'transparent-black'
+    | 'text'
+    | 'icon-text'
   >;
   className?: string;
   icon?: typeof ICON_SHAPES[number];

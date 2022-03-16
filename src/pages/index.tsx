@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import Heading from 'components/atom/heading';
 import Banner from 'components/molecules/banner';
+import NavBar from 'components/molecules/navBar';
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Heading>Netflix</Heading>
+      <NavBar userName="sajal@gmail.com" />
 
       <main className="p-home__body">
         <Banner title="Clifford the red dog" subtitle="a very cute dog" imgUrl="/static/background.png" />

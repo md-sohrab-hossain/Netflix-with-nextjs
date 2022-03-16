@@ -11,6 +11,10 @@
     justify-content: center;
     flex-direction: column;
     margin-left: 10rem;
+
+    @include sp {
+      margin-left: 5rem;
+    }
   }
 
   &__image {

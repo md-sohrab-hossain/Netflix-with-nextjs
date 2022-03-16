@@ -31,3 +31,8 @@
     @content;
   }
 }
+
+@mixin flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
