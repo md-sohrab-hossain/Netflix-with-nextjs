@@ -40,4 +40,6 @@
   }
 
   @include icon('play-button', 20px, 20px);
+  @include icon('expand-more', 24px, 24px);
+  @include icon('expand-less', 24px, 24px);
 }

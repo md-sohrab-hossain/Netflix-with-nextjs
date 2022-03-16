@@ -1,8 +1,9 @@
+import { forwardRef } from 'react';
 import { mapModifiers, ModifierProp } from 'libs/component';
 import { Icon, ICON_SHAPES } from 'components/atom/icon';
 
 export interface buttonProps {
-  title: string;
+  children: React.ReactNode;
   modifiers?: ModifierProp<
     | 'primary'
     | 'secondary'
@@ -17,19 +18,22 @@ export interface buttonProps {
   >;
   className?: string;
   icon?: typeof ICON_SHAPES[number];
+  ref?: React.Ref<HTMLButtonElement>;
   onClick?: () => void;
 }
 
-const Button: React.FC<buttonProps> = ({ modifiers, className: additionalClassName = '', title, icon, onClick }) => {
-  const componentClassName = mapModifiers('a-button', modifiers, icon && 'icon');
-  const className = `${componentClassName} ${additionalClassName}`.trim();
+export const Button: React.FC<buttonProps> = forwardRef(
+  ({ modifiers, className: additionalClassName = '', children, icon, onClick }, ref) => {
+    const componentClassName = mapModifiers('a-button', modifiers, icon && 'icon');
+    const className = `${componentClassName} ${additionalClassName}`.trim();
 
-  return (
-    <button className={className} onClick={onClick}>
-      {icon && <Icon name={icon} />}
-      {title}
-    </button>
-  );
-};
+    return (
+      <button className={className} onClick={onClick} ref={ref}>
+        {icon && <Icon name={icon} />}
+        {children}
+      </button>
+    );
+  }
+);
 
-export default Button;
+Button.displayName = 'button';
