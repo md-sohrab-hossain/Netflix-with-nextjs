@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import Banner from 'components/molecules/banner';
-import NavBar from 'components/molecules/navBar';
 
 const Home: NextPage = () => {
   return (
