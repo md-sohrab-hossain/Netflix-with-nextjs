@@ -9,7 +9,7 @@
   align-items: center;
   @include flexSpaceBetween;
 
-  &__wrapper {
+  &__Left {
     max-width: 60%;
     min-width: 20%;
     height: 100%;
@@ -45,7 +45,7 @@
     }
   }
 
-  &__container {
+  &__Right {
     position: relative;
     margin-right: 2rem;
 
