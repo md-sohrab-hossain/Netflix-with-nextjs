@@ -1,18 +1,31 @@
 .m-card-list {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: $color-deep-black;
 
-  .a-card {
-    margin: 0 2rem 0 0;
-
-    @include sp() {
-      margin: 0 0 2rem 0;
-    }
+  .a-heading {
+    margin-top: 1.8rem;
+    color: $color-white;
+    font-weight: 700;
+    font-size: 2rem;
   }
 
-  @include sp() {
-    flex-direction: column;
+  &__items {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1.7rem;
+    padding-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    margin-right: 0.75rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  @include sp {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
