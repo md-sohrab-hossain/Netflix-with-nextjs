@@ -1,4 +1,14 @@
 .o-layout {
   display: flex;
   flex-direction: column;
+
+  &__tracky {
+    top: unset !important;
+    background: transparent !important;
+    border-radius: unset !important;
+  }
+
+  &__thumby {
+    background: $color-secondary-grey !important;
+  }
 }

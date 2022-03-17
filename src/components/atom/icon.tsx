@@ -1,7 +1,7 @@
 import { mapModifiers } from 'libs/component';
 import React from 'react';
 
-export const ICON_SHAPES = ['play-button', 'expand-more', 'expand-less'] as const;
+export const ICON_SHAPES = ['play-button', 'expand-more', 'expand-less', 'arrow-left', 'arrow-right'] as const;
 
 export type IconShape = typeof ICON_SHAPES[number];
 

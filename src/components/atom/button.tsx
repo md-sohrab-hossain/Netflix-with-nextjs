@@ -3,7 +3,7 @@ import { mapModifiers, ModifierProp } from 'libs/component';
 import { Icon, ICON_SHAPES } from 'components/atom/icon';
 
 export interface buttonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   modifiers?: ModifierProp<
     | 'primary'
     | 'secondary'
