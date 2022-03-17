@@ -14,7 +14,6 @@ const Card: React.FC<cardProps> = ({ modifiers, className: additionalClassName =
   const className = `${componentClassName} ${additionalClassName}`.trim();
 
   const handleOnError = useCallback(() => {
-    console.log('error');
     setImgSrc('/static/images/not-found.png');
   }, []);
 
