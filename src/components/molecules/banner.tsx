@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import { Button } from 'components/atom/button';
 import Heading from 'components/atom/heading';
-
+import Image from 'next/image';
 export interface bannerProps {
   title: string;
   subtitle: string;
@@ -22,7 +21,7 @@ const Banner: React.FC<bannerProps> = ({ title, subtitle, imgUrl }) => {
           <span>Play</span>
         </Button>
       </div>
-      <img className="m-banner__image" src={`${imgUrl}`} alt="banner-img" />
+      <Image className="m-banner__image" src={`${imgUrl}`} alt="banner-img" layout="fill" />
     </div>
   );
 };
