@@ -10,11 +10,11 @@
 
   &:hover {
     z-index: $zindex-balloon;
-    transform: scale(1.06);
+    transform: scale(1.07);
 
     &:first-child,
     &:last-child {
-      transform: scaleY(1.06);
+      transform: scaleY(1.07);
     }
   }
 
