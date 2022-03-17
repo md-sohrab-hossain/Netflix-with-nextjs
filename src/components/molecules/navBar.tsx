@@ -24,7 +24,7 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
     <div className="m-navbar">
       <div className="m-navbar__Left">
         <div className="m-navbar__Left--logo">
-          <Image src="/static/images/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
+          <Image src="/static/icons/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
         </div>
         <ul className="m-navbar__Left--items">
           <li className="m-navbar__Left--items-home" onClick={() => handleClick('/')}>

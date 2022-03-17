@@ -1,27 +1,27 @@
 import Image from 'next/image';
-import Link from 'next/link';
-
+import { useState, useCallback } from 'react';
+import { mapModifiers, ModifierProp } from 'libs/component';
+import { motion } from 'framer-motion';
 export interface cardProps {
-  name: string;
+  className?: string;
+  modifiers?: ModifierProp<'large' | 'medium' | 'small'>;
   imgUrl: string;
-  href: string;
-  id?: string;
 }
 
-const Card: React.FC<cardProps> = ({ name, imgUrl, href }) => {
+const Card: React.FC<cardProps> = ({ modifiers, className: additionalClassName = '', imgUrl }) => {
+  const [imgSrc, setImgSrc] = useState<string>(imgUrl);
+  const componentClassName = mapModifiers('a-card', modifiers);
+  const className = `${componentClassName} ${additionalClassName}`.trim();
+
+  const handleOnError = useCallback(() => {
+    console.log('error');
+    setImgSrc('/static/images/not-found.png');
+  }, []);
+
   return (
-    <Link href={href}>
-      <a className="a-card">
-        <div className="a-card__container">
-          <div className="a-card__container--header">
-            <h2>{name}</h2>
-          </div>
-          <div className="a-card__container--image">
-            <Image src={imgUrl} width={260} height={160} alt="name" />
-          </div>
-        </div>
-      </a>
-    </Link>
+    <motion.div whileHover={{ scale: 1.2 }} className={className}>
+      <Image className="a-card__image" onError={handleOnError} src={imgSrc} alt="card img" layout="fill" />
+    </motion.div>
   );
 };
 
