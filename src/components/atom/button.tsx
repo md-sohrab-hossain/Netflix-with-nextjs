@@ -1,8 +1,12 @@
 import { forwardRef } from 'react';
 import { mapModifiers, ModifierProp } from 'libs/component';
 import { Icon, ICON_SHAPES } from 'components/atom/icon';
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
-export interface buttonProps {
+type InheritedProps = Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'onClick'> &
+  Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'onClick' | 'disabled'>;
+
+export interface buttonProps extends InheritedProps {
   children?: React.ReactNode;
   modifiers?: ModifierProp<
     | 'primary'
@@ -11,6 +15,7 @@ export interface buttonProps {
     | 'fourth'
     | 'postal'
     | 'upload'
+    | 'red'
     | 'transparent'
     | 'transparent-black'
     | 'text'
@@ -19,7 +24,6 @@ export interface buttonProps {
   className?: string;
   icon?: typeof ICON_SHAPES[number];
   ref?: React.Ref<HTMLButtonElement>;
-  onClick?: () => void;
 }
 
 export const Button: React.FC<buttonProps> = forwardRef(

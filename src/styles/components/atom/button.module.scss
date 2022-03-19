@@ -123,6 +123,18 @@
     }
   }
 
+  &--red {
+    color: $color-white;
+    background: red;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+
+    &:hover {
+      background: $color-primary-red;
+    }
+  }
+
   &--text {
     height: auto;
     padding: 0;

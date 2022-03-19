@@ -16,15 +16,17 @@
 @import './components/atom/backbutton.module.scss';
 @import './components/atom/card.module.scss';
 @import './components/atom/icon.module.scss';
+@import './components/atom/inputText.module.scss';
 
 //component/molecules
 @import './components/molecules/banner.module.scss';
 @import './components/molecules/navbar.module.scss';
 @import './components/molecules/cardlist.module.scss';
+@import './components/molecules/form.module.scss';
 
 //component/organism
 @import './components/organism/layout.module.scss';
 
 //page
 @import './components/pages/home.module.scss';
-@import './components/pages/coffee-store.module.scss';
+@import './components/pages/login.module.scss';
