@@ -8,11 +8,10 @@
   object-position: center;
   max-width: 100%;
   max-height: 100%;
-  opacity: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('/static/images/netflix-background.jpg');
+  background-image: linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url('/static/images/netflix-background.jpg');
 }
 
 .m-navbar {

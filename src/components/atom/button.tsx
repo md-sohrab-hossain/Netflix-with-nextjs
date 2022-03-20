@@ -27,12 +27,12 @@ export interface buttonProps extends InheritedProps {
 }
 
 export const Button: React.FC<buttonProps> = forwardRef(
-  ({ modifiers, className: additionalClassName = '', children, icon, onClick }, ref) => {
+  ({ type = 'button', modifiers, className: additionalClassName = '', children, icon, onClick }, ref) => {
     const componentClassName = mapModifiers('a-button', modifiers, icon && 'icon');
     const className = `${componentClassName} ${additionalClassName}`.trim();
 
     return (
-      <button className={className} onClick={onClick} ref={ref}>
+      <button type={type} className={className} onClick={onClick} ref={ref}>
         {icon && <Icon name={icon} />}
         {children}
       </button>

@@ -1,9 +1,15 @@
 import Head from 'next/head';
-import React from 'react';
+import { useState } from 'react';
 import SignInForm from 'components/molecules/signInForm';
 
 const Login: React.FC<{}> = ({}) => {
-  const handleSubmit = (e: React.MouseEvent<HTMLElement>, email: string) => {
+  const [email, setEmail] = useState<string>('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert(email);
   };
@@ -15,7 +21,7 @@ const Login: React.FC<{}> = ({}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SignInForm handleSubmit={handleSubmit} />
+      <SignInForm handleSubmit={handleSubmit} onChange={handleInputChange} />
     </div>
   );
 };
