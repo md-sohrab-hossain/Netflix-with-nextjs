@@ -13,13 +13,3 @@
   align-items: center;
   background-image: linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url('/static/images/netflix-background.jpg');
 }
-
-.m-navbar {
-  margin-top: 2rem;
-  background: transparent;
-}
-
-.m-navbar__Left--items,
-.m-navbar__Right {
-  display: none;
-}

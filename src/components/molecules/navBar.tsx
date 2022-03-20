@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -14,6 +14,17 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
+  useEffect(() => {
+    const element = document.querySelector('.m-navbar') as HTMLElement;
+    if (router.pathname === '/login') {
+      element.style.marginTop = '2rem';
+      element.style.background = 'transparent';
+    } else {
+      element.style.marginTop = '0';
+      element.style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0, rgba(202, 173, 173, 0.2) 58%)`;
+    }
+  }, [router.pathname]);
+
   const handleClick = (url: string) => {
     router.push(url);
   };
@@ -24,20 +35,26 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
     <div className="m-navbar">
       <div className="m-navbar__Left">
         <div className="m-navbar__Left--logo">
-          <Image src="/static/icons/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
+          <Link href="/">
+            <a>
+              <Image src="/static/icons/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
+            </a>
+          </Link>
         </div>
-        <ul className="m-navbar__Left--items">
-          <li className="m-navbar__Left--items-home" onClick={() => handleClick('/')}>
-            Home
-          </li>
-          <li className="m-navbar__Left--items-myList" onClick={() => handleClick('/browse/myList')}>
-            My List
-          </li>
-        </ul>
+        {router.pathname === '/login' || (
+          <ul className="m-navbar__Left--items">
+            <li className="m-navbar__Left--items-home" onClick={() => handleClick('/')}>
+              Home
+            </li>
+            <li className="m-navbar__Left--items-myList" onClick={() => handleClick('/browse/myList')}>
+              My List
+            </li>
+          </ul>
+        )}
       </div>
 
       <nav className="m-navbar__Right">
-        {userName ? (
+        {(userName && router.pathname === '/login') || (
           <>
             <Button modifiers="text" onClick={() => setShowDropdown(!showDropdown)} ref={buttonRef}>
               <span>{userName}</span>
@@ -51,10 +68,6 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
               </div>
             )}
           </>
-        ) : (
-          <Button modifiers="secondary" onClick={() => handleClick('/login')}>
-            <span>Login</span>
-          </Button>
         )}
       </nav>
     </div>
