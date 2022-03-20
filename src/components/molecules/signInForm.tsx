@@ -1,6 +1,6 @@
 import { Button } from 'components/atom/button';
 import Heading from 'components/atom/heading';
-import InputText from 'components/atom/inputText';
+import Input from 'components/atom/input';
 import React from 'react';
 
 export interface signInProps {
@@ -14,7 +14,7 @@ const SignInForm: React.FC<signInProps> = ({ onChange, handleSubmit, error = fal
     <form className="m-form" onSubmit={handleSubmit}>
       <Heading>Sign In</Heading>
       <div className="m-form__input">
-        <InputText placeholder="Email Address" type="email" onChange={onChange} />
+        <Input placeholder="Email Address" type="email" onChange={onChange} />
         {error && <p>please enter a valid email address</p>}
       </div>
 
