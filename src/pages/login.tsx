@@ -2,16 +2,19 @@ import Head from 'next/head';
 import { useState } from 'react';
 import SignInForm from 'components/molecules/signInForm';
 
-const Login: React.FC<{}> = ({}) => {
+const Login: React.FC<{}> = () => {
   const [email, setEmail] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    setMessage('');
     e.preventDefault();
-    alert(email);
+    const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
+    !regEx.test(email) && setMessage('Please enter a valid email address!');
   };
 
   return (
@@ -21,7 +24,7 @@ const Login: React.FC<{}> = ({}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SignInForm handleSubmit={handleSubmit} onChange={handleInputChange} />
+      <SignInForm error={message} handleSubmit={handleSubmit} onChange={handleInputChange} />
     </div>
   );
 };

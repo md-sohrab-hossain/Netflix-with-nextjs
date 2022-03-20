@@ -1,6 +1,6 @@
 .m-form {
-  height: 300px;
-  width: 250px;
+  height: 27rem;
+  width: 25rem;
   padding: 2.5rem;
   border-radius: 10px;
   display: flex;
@@ -11,5 +11,10 @@
   &__input {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
+
+    &--error {
+      font-size: 1.2rem;
+      color: $color-primary-red;
+    }
   }
 }
