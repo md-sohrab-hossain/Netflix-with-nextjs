@@ -7,7 +7,7 @@ export interface inputTextProps {
 }
 
 const Input: React.FC<inputTextProps> = ({ placeholder, type = 'text', onChange }) => {
-  return <input className="a-inputText" type={type} placeholder={placeholder} onChange={onChange} />;
+  return <input className="a-input" type={type} placeholder={placeholder} onChange={onChange} />;
 };
 
 export default Input;
