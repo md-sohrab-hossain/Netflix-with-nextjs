@@ -4,8 +4,8 @@ import InputText from 'components/atom/inputText';
 import React from 'react';
 
 export interface signInProps {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent) => void;
   error?: boolean;
 }
 
