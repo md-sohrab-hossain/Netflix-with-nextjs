@@ -1,23 +1,46 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SignInForm from 'components/molecules/signInForm';
+import { loginWithMagic } from 'libs/magic-login';
 
 const Login: React.FC<{}> = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleRouteChange = () => setIsLoading(false);
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    router.events.on('routeChangeError', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+      router.events.off('routeChangeError', handleRouteChange);
+    };
+  }, [router.events]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    setMessage('');
+  const handleUserLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
-    if (regEx.test(email) && email === 'sajal@gmail.com') router.push('/');
-    !regEx.test(email) && setMessage('Please enter a valid email address!');
+    setIsLoading(true);
+
+    const regEx = /^([^0-9])[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
+
+    if (regEx.test(email)) {
+      const login = await loginWithMagic(email);
+      login && router.push('/');
+      setMessage('');
+    } else {
+      setIsLoading(false);
+      setMessage('Enter a valid email address');
+    }
   };
 
   return (
@@ -27,7 +50,12 @@ const Login: React.FC<{}> = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SignInForm error={message} handleSubmit={handleSubmit} onChange={handleInputChange} />
+      <SignInForm
+        message={isLoading ? 'Loading..' : 'Sign In'}
+        error={message}
+        handleSubmit={handleUserLogin}
+        onChange={handleInputChange}
+      />
     </div>
   );
 };

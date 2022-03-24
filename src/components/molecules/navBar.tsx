@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { Icon } from 'components/atom/icon';
 import { Button } from 'components/atom/button';
 import { useOnClickOutside } from 'libs/hook/handleClickOutside';
+import { useSignOut } from 'libs/hook/handleSignOutUser';
 export interface navbarProps {
   userName?: string;
 }
@@ -13,8 +14,10 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const { signOut } = useSignOut();
 
   useEffect(() => {
+    setShowDropdown(false);
     const element = document.querySelector('.m-navbar') as HTMLElement;
     if (router.pathname === '/login') {
       element.style.marginTop = '2rem';
@@ -54,7 +57,7 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
       </div>
 
       <nav className="m-navbar__Right">
-        {(userName && router.pathname === '/login') || (
+        {userName && router.pathname !== '/login' && (
           <>
             <Button modifiers="text" onClick={() => setShowDropdown(!showDropdown)} ref={buttonRef}>
               <span>{userName}</span>
@@ -62,9 +65,9 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
             </Button>
             {showDropdown && (
               <div className="m-navbar__Right--dropdown">
-                <Link href="/login">
-                  <a className="m-navbar__Right--dropdown-signout">Sign out</a>
-                </Link>
+                <a onClick={(e: any) => signOut(e)} className="m-navbar__Right--dropdown-signout">
+                  Sign out
+                </a>
               </div>
             )}
           </>

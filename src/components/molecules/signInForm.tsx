@@ -1,16 +1,16 @@
 import { Button } from 'components/atom/button';
 import Heading from 'components/atom/heading';
 import Input from 'components/atom/input';
-import type { NextPage } from 'next';
 import React from 'react';
 
 export interface signInProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.FormEvent) => void;
   error?: string;
+  message?: string;
 }
 
-const SignInForm: React.FC<signInProps> = ({ onChange, handleSubmit, error }) => {
+const SignInForm: React.FC<signInProps> = ({ onChange, handleSubmit, error, message }) => {
   return (
     <form className="m-form" onSubmit={handleSubmit}>
       <Heading>Sign In</Heading>
@@ -20,7 +20,7 @@ const SignInForm: React.FC<signInProps> = ({ onChange, handleSubmit, error }) =>
       </div>
 
       <Button modifiers="red" type="submit">
-        Sign In
+        {message}
       </Button>
     </form>
   );
