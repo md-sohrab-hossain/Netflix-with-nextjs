@@ -4,10 +4,19 @@
   position: fixed;
   top: 0;
   color: $color-base-white;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0, rgba(202, 173, 173, 0.2) 58%);
   z-index: $zindex-navbar;
   align-items: center;
   @include flexSpaceBetween;
+
+  &--login {
+    margin-top: 2rem;
+    background: transparent;
+  }
+
+  &--dashboard {
+    margin-top: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0, rgba(202, 173, 173, 0.2) 58%);
+  }
 
   &__Left {
     max-width: 60%;

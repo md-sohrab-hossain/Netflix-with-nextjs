@@ -6,36 +6,42 @@ import { Icon } from 'components/atom/icon';
 import { Button } from 'components/atom/button';
 import { useOnClickOutside } from 'libs/hook/handleClickOutside';
 import { useSignOut } from 'libs/hook/handleSignOutUser';
+import { mapModifiers } from 'libs/component';
 export interface navbarProps {
   userName?: string;
 }
 
 const NavBar: React.FC<navbarProps> = ({ userName }) => {
   const router = useRouter();
+  const { signOut } = useSignOut();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const { signOut } = useSignOut();
+
+  const componentClassName = mapModifiers('m-navbar', router.pathname === '/login' ? 'login' : 'dashboard');
+  const className = `${componentClassName}`.trim();
 
   useEffect(() => {
-    setShowDropdown(false);
-    const element = document.querySelector('.m-navbar') as HTMLElement;
-    if (router.pathname === '/login') {
-      element.style.marginTop = '2rem';
-      element.style.background = 'transparent';
-    } else {
-      element.style.marginTop = '0';
-      element.style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0, rgba(202, 173, 173, 0.2) 58%)`;
-    }
-  }, [router.pathname]);
+    const handleComplete = () => {
+      setShowDropdown(false);
+    };
 
-  const handleClick = (url: string) => {
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
+  }, [router.events]);
+
+  const handleRoute = (url: string) => {
     router.push(url);
   };
 
   useOnClickOutside(buttonRef, () => setShowDropdown(false));
 
   return (
-    <div className="m-navbar">
+    <div className={className}>
       <div className="m-navbar__Left">
         <div className="m-navbar__Left--logo">
           <Link href="/">
@@ -46,10 +52,10 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
         </div>
         {router.pathname === '/login' || (
           <ul className="m-navbar__Left--items">
-            <li className="m-navbar__Left--items-home" onClick={() => handleClick('/')}>
+            <li className="m-navbar__Left--items-home" onClick={() => handleRoute('/')}>
               Home
             </li>
-            <li className="m-navbar__Left--items-myList" onClick={() => handleClick('/browse/myList')}>
+            <li className="m-navbar__Left--items-myList" onClick={() => handleRoute('/browse/myList')}>
               My List
             </li>
           </ul>
