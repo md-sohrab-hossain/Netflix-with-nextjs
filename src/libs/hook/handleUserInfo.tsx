@@ -2,13 +2,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { magic } from 'libs/magic-client';
 
 export const useUserInfo = () => {
-  const [userEmail, setUsername] = useState('');
-  const [didToken, setDidToken] = useState('');
+  const [userEmail, setUsername] = useState<string>('');
+  const [didToken, setDidToken] = useState<string>('');
 
   const getUserInfo = useCallback(async () => {
     try {
-      const { email, issuer } = await magic?.user?.getMetadata();
-      const didToken = await magic?.user?.getIdToken();
+      const { email, issuer } = await (magic as any)?.user?.getMetadata();
+      const didToken = await (magic as any)?.user?.getIdToken();
       if (email) {
         setUsername(email);
         setDidToken(didToken);

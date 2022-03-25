@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 export const useSignOut = () => {
   const router = useRouter();
 
-  const signOut = async e => {
+  const signOut = async (e: any) => {
     e.preventDefault();
 
     try {
-      await magic.user.logout();
+      await (magic as any).user.logout();
       router.push('/login');
     } catch {}
   };
