@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { magic } from 'libs/magic-client';
 
 export const useUserInfo = () => {
-  const [userEmail, setUsername] = useState < string > '';
-  const [didToken, setDidToken] = useState < string > '';
+  const [userEmail, setUsername] = useState('');
+  const [didToken, setDidToken] = useState('');
 
   const getUserInfo = useCallback(async () => {
     try {
