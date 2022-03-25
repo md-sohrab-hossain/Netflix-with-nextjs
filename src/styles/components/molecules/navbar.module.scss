@@ -26,6 +26,10 @@
     @include flexSpaceBetween;
     align-items: center;
 
+    @include sp {
+      display: none;
+    }
+
     &--logo {
       margin-left: 4rem;
 
