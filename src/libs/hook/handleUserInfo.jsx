@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { magic } from 'libs/magic-client';
 
 export const useUserInfo = () => {
-  const [userEmail, setUsername] = useState<string>('');
-  const [didToken, setDidToken] = useState<string>('');
+  const [userEmail, setUsername] = useState < string > '';
+  const [didToken, setDidToken] = useState < string > '';
 
   const getUserInfo = useCallback(async () => {
     try {
@@ -16,6 +16,7 @@ export const useUserInfo = () => {
     } catch (error) {
       console.error('Error retrieving email', error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

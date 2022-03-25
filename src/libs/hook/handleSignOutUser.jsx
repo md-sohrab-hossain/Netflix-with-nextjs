@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 export const useSignOut = () => {
   const router = useRouter();
 
-  const signOut = async (e: Event) => {
+  const signOut = async e => {
     e.preventDefault();
 
     try {
