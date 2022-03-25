@@ -18,8 +18,7 @@ const Home: NextPage<homePageProps> = ({
   productivityVideos = [],
   popularVideos = [],
 }) => {
-  const random = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
-  const video: any = disneyVideos[random(0, 24)];
+  const video: any = disneyVideos[0];
 
   return (
     <div className="p-home">
