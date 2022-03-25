@@ -18,6 +18,7 @@
 @import './components/atom/icon.module.scss';
 @import './components/atom/input.module.scss';
 @import './components/atom/loading.module.scss';
+@import './components/atom/modal-footer.module.scss';
 
 //component/molecules
 @import './components/molecules/banner.module.scss';
@@ -27,6 +28,7 @@
 
 //component/organism
 @import './components/organism/layout.module.scss';
+@import './components/organism/modal.module.scss';
 
 //page
 @import './components/pages/home.module.scss';

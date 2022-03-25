@@ -36,15 +36,15 @@ const Home: NextPage<homePageProps> = ({
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const disneyVideos = await getVideos('disney trailer');
-//   const productivityVideos = await getVideos('Productivity');
-//   const travelVideos = await getVideos('travel');
-//   const popularVideos = await getPopularVideos();
+export const getServerSideProps: GetServerSideProps = async () => {
+  const disneyVideos = await getVideos('disney trailer');
+  const productivityVideos = await getVideos('Productivity');
+  const travelVideos = await getVideos('travel');
+  const popularVideos = await getPopularVideos();
 
-//   return {
-//     props: { disneyVideos, travelVideos, productivityVideos, popularVideos },
-//   };
-// };
+  return {
+    props: { disneyVideos, travelVideos, productivityVideos, popularVideos },
+  };
+};
 
 export default Home;

@@ -6,20 +6,22 @@ import type { AppProps, AppContext } from 'next/app';
 import { useRouter } from 'next/router';
 import { magic } from 'libs/magic-client';
 import { Loading } from 'components/atom/loading';
-import Layout from 'components/organism/Layout';
+import Layout from 'components/organism/layout';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(false);
+
     (async () => {
-      const isLoggedIn = await magic?.user?.isLoggedIn();
-      if (isLoggedIn) {
-        router.push('/');
-      } else {
-        router.push('/login');
-      }
+      // const isLoggedIn = await magic?.user?.isLoggedIn();
+      // if (isLoggedIn) {
+      //   router.push('/');
+      // } else {
+      //   router.push('/login');
+      // }
     })();
 
     const handleComplete = () => {

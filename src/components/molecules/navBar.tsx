@@ -39,6 +39,7 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
   };
 
   useOnClickOutside(buttonRef, () => setShowDropdown(false));
+  if (router.pathname === '/video/[videoId]') return null;
 
   return (
     <div className={className}>

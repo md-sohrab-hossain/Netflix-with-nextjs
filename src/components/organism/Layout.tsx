@@ -6,6 +6,7 @@ export interface layoutProps {
   children?: React.ReactNode;
   title?: string;
 }
+
 const Layout: React.FC<layoutProps> = ({ children, title = 'Netflix' }) => {
   const { userEmail } = useUserInfo();
 

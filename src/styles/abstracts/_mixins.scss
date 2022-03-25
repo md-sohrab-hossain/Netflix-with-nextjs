@@ -36,3 +36,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+@mixin sprite-icon() {
+  background-position: 0% center;
+  background-size: 200% 100%;
+}
+@mixin sprite-icon-active() {
+  background-position: 100% center;
+}
