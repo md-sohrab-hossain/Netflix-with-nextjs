@@ -1,12 +1,29 @@
+import { NextPage, GetStaticProps } from 'next';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Modal } from 'components/organism/modal';
 import Footer from 'components/atom/modal-footer';
+import { getYoutubeVideoById } from 'libs/getVideo';
 
-const Video: React.FC<{}> = () => {
+export interface videoProps {
+  video: {
+    title: string;
+    publishTime: string;
+    description: string;
+    channelTitle: string;
+    viewCount: number;
+    statistics: {
+      viewCount: number;
+    };
+  };
+}
+
+const Video: NextPage<videoProps> = ({ video }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [modalResize, setModalReSize] = useState<boolean>(false);
   const router = useRouter();
+
+  const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 } } = video;
 
   useEffect(() => {
     const handleComplete = () => {
@@ -30,6 +47,18 @@ const Video: React.FC<{}> = () => {
     setModalReSize(() => !modalResize);
   };
 
+  const getFooter = () => {
+    return (
+      <Footer
+        title={title}
+        publishTime={publishTime}
+        description={description}
+        channelTitle={channelTitle}
+        viewCount={viewCount}
+      />
+    );
+  };
+
   return (
     <div className="p-video-player">
       <Modal
@@ -38,15 +67,7 @@ const Video: React.FC<{}> = () => {
         modifiers={modalResize ? 'fullscreen' : ''}
         onCloseRequested={handleClose}
         resizePlayer={handleResize}
-        footer={
-          <Footer
-            title="Hi Cute dog"
-            publishTime="1990-1-1"
-            description="this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description this is test description"
-            channelTitle="paramount pictures"
-            viewCount="123989812"
-          />
-        }
+        footer={getFooter()}
       >
         <iframe
           className="youtube-video"
@@ -60,5 +81,26 @@ const Video: React.FC<{}> = () => {
     </div>
   );
 };
+
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const videoId = context.params.videoId;
+  const videoArray = await getYoutubeVideoById(videoId);
+
+  return {
+    props: {
+      video: videoArray.length > 0 ? videoArray[0] : {},
+    },
+    revalidate: 10, // In seconds
+  };
+};
+
+export async function getStaticPaths() {
+  const listOfVideos = ['mYfJxlgR2jw', '4zH5iYM4wJo', 'KCPEHsAViiQ'];
+  const paths = listOfVideos.map(videoId => ({
+    params: { videoId },
+  }));
+
+  return { paths, fallback: 'blocking' };
+}
 
 export default Video;

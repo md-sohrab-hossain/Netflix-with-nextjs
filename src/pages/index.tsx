@@ -18,6 +18,9 @@ const Home: NextPage<homePageProps> = ({
   productivityVideos = [],
   popularVideos = [],
 }) => {
+  const random = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
+  const video: any = disneyVideos[random(0, 24)];
+
   return (
     <div className="p-home">
       <Head>
@@ -26,7 +29,12 @@ const Home: NextPage<homePageProps> = ({
       </Head>
 
       <main className="p-home__body">
-        <Banner title="Clifford the red dog" subtitle="a very cute dog" imgUrl="/static/images/background.png" />
+        <Banner
+          title={video?.channelTitle}
+          subtitle={`${video?.description.substring(0, 25)}...`}
+          imgUrl={video?.imgUrl}
+          videoId={video.id}
+        />
         <CardList title="Disney" size="large" video={disneyVideos} />
         <CardList title="Travel" size="small" video={travelVideos} />
         <CardList title="Productivity" size="medium" video={productivityVideos} />

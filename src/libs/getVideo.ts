@@ -43,6 +43,10 @@ export const getVideos = (searchQuery: string) => {
 
 export const getPopularVideos = () => {
   const URL = 'videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=BD';
-  //videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc
+  return getCommonVideos(URL);
+};
+
+export const getYoutubeVideoById = (videoId: string) => {
+  const URL = `videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}`;
   return getCommonVideos(URL);
 };

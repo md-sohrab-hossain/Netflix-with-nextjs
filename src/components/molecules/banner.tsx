@@ -1,3 +1,5 @@
+import { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { Button } from 'components/atom/button';
 import Heading from 'components/atom/heading';
 import Image from 'next/image';
@@ -5,12 +7,20 @@ export interface bannerProps {
   title: string;
   subtitle: string;
   imgUrl: string;
+  videoId?: string;
 }
 
-const Banner: React.FC<bannerProps> = ({ title, subtitle, imgUrl }) => {
+const Banner: React.FC<bannerProps> = ({ title, subtitle, imgUrl, videoId }) => {
+  const router = useRouter();
+  const [imgSrc, setImgSrc] = useState<string>(imgUrl);
+
   const handlePlay = () => {
-    alert('play');
+    router.push(`/video/${videoId}`);
   };
+
+  const handleOnError = useCallback(() => {
+    setImgSrc('/static/images/not-found.png');
+  }, []);
 
   return (
     <div className="m-banner">
@@ -21,7 +31,7 @@ const Banner: React.FC<bannerProps> = ({ title, subtitle, imgUrl }) => {
           <span>Play</span>
         </Button>
       </div>
-      <Image className="m-banner__image" src={`${imgUrl}`} alt="banner-img" layout="fill" />
+      <Image className="m-banner__image" onError={handleOnError} src={`${imgSrc}`} alt="banner-img" layout="fill" />
     </div>
   );
 };
