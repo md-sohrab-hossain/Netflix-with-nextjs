@@ -18,7 +18,7 @@ const Home: NextPage<homePageProps> = ({
   productivityVideos = [],
   popularVideos = [],
 }) => {
-  const video: any = disneyVideos[0];
+  const video: any = disneyVideos[1];
 
   return (
     <div className="p-home">
