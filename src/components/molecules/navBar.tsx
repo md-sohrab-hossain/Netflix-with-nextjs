@@ -56,9 +56,9 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
             <li className="m-navbar__Left--items-home" onClick={() => handleRoute('/')}>
               Home
             </li>
-            <li className="m-navbar__Left--items-myList" onClick={() => handleRoute('/')}>
+            {/* <li className="m-navbar__Left--items-myList" onClick={() => handleRoute('/')}>
               My List
-            </li>
+            </li> */}
           </ul>
         )}
       </div>

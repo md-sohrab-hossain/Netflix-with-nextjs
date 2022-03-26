@@ -18,8 +18,6 @@ const Home: NextPage<homePageProps> = ({
   productivityVideos = [],
   popularVideos = [],
 }) => {
-  const video: any = disneyVideos[1];
-
   return (
     <div className="p-home">
       <Head>
@@ -29,10 +27,10 @@ const Home: NextPage<homePageProps> = ({
 
       <main className="p-home__body">
         <Banner
-          title={video?.channelTitle}
-          subtitle={`${video?.description.substring(0, 25)}...`}
-          imgUrl={video?.imgUrl}
-          videoId={video.id}
+          title="Frozen 2"
+          subtitle="Mandy Moore - When Will My Life Begin?"
+          imgUrl="/static/images/frozen.png"
+          videoId="bwzLiQZDw2I"
         />
         <CardList title="Disney" size="large" video={disneyVideos} />
         <CardList title="Travel" size="small" video={travelVideos} />
