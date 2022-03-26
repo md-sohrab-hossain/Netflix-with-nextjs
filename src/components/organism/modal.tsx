@@ -1,6 +1,6 @@
 import { Icon } from 'components/atom/icon';
 import { mapModifiers, ModifierProp } from 'libs/component';
-import React, { useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 export interface modalProps {
   children?: React.ReactNode;
@@ -33,6 +33,7 @@ export const Modal: React.FC<modalProps> = ({
     footer ? 'has-footer' : ''
   );
   const className = `${componentClassName} ${additionalClassName}`.trim();
+  const [hover, setHover] = useState<boolean>(false);
 
   const handleBackgroundClick = useCallback(
     (e: MouseEvent) => {
@@ -57,8 +58,14 @@ export const Modal: React.FC<modalProps> = ({
   return (
     <div className={className} id={id}>
       <div className="o-modal__window">
-        <button className="o-modal__resize-button" type="button" onClick={resizePlayer}>
-          <Icon name="resize" />
+        <button
+          className="o-modal__resize-button"
+          onMouseEnter={() => setHover(!hover)}
+          onMouseLeave={() => setHover(!hover)}
+          type="button"
+          onClick={resizePlayer}
+        >
+          <Icon name={hover ? 'resize-pink' : 'resize'} />
         </button>
         <button className="o-modal__close-button" type="button" onClick={onCloseRequested}>
           <Icon name="close" />

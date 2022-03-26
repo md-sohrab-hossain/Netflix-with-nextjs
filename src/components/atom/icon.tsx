@@ -8,6 +8,7 @@ export const ICON_SHAPES = [
   'arrow-left',
   'arrow-right',
   'resize',
+  'resize-pink',
   'close',
 ] as const;
 

@@ -154,10 +154,6 @@
     border: none;
     background: transparent;
 
-    .a-icon--resize:hover {
-      background-image: url('/static/icons/resize-pink.svg');
-    }
-
     #{$root}--fullscreen & {
       top: 1.1rem;
 
