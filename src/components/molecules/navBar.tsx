@@ -45,11 +45,7 @@ const NavBar: React.FC<navbarProps> = ({ userName }) => {
     <div className={className}>
       <div className="m-navbar__Left">
         <div className="m-navbar__Left--logo">
-          <Link href="/">
-            <a>
-              <Image src="/static/icons/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
-            </a>
-          </Link>
+          <Image src="/static/icons/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
         </div>
         {router.pathname === '/login' || (
           <ul className="m-navbar__Left--items">
