@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Modal } from 'components/organism/modal';
 import Footer from 'components/atom/modal-footer';
-import { getYoutubeVideoById } from 'libs/getVideo';
+import { getYoutubeVideoById } from 'libs/getYoutubeVideo';
+// import { getVideoDetails } from 'libs/getTmdVideo';
 
 export interface videoProps {
   video: {
@@ -85,6 +86,7 @@ const Video: NextPage<videoProps> = ({ video }) => {
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const videoId = context.params.videoId;
   const videoArray = await getYoutubeVideoById(videoId);
+  // const videoArray = await getVideoDetails(videoId);
 
   return {
     props: {
