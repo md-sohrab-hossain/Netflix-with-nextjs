@@ -1,30 +1,16 @@
-import { NextPage, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Modal } from 'components/organism/modal';
 import Footer from 'components/atom/modal-footer';
-import { getYoutubeVideoById } from 'libs/getYoutubeVideo';
-// import { getVideoDetails } from 'libs/getTmdVideo';
+import { useGetVideoById } from 'api/useGetVideoById';
+import { Loading } from 'components/atom/loading';
 
-export interface videoProps {
-  video: {
-    title: string;
-    publishTime: string;
-    description: string;
-    channelTitle: string;
-    viewCount: number;
-    statistics: {
-      viewCount: number;
-    };
-  };
-}
-
-const Video: NextPage<videoProps> = ({ video }) => {
+const Video: NextPage = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [modalResize, setModalReSize] = useState<boolean>(false);
-  const router = useRouter();
-
-  const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 } } = video;
+  const { data, isLoading } = useGetVideoById('bwzLiQZDw2I');
 
   useEffect(() => {
     const handleComplete = () => {
@@ -49,6 +35,9 @@ const Video: NextPage<videoProps> = ({ video }) => {
   };
 
   const getFooter = () => {
+    if (isLoading) return <Loading />;
+    const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 } } = data[0];
+
     return (
       <Footer
         title={title}
@@ -82,27 +71,5 @@ const Video: NextPage<videoProps> = ({ video }) => {
     </div>
   );
 };
-
-export const getStaticProps: GetStaticProps = async (context: any) => {
-  const videoId = context.params.videoId;
-  const videoArray = await getYoutubeVideoById(videoId);
-  // const videoArray = await getVideoDetails(videoId);
-
-  return {
-    props: {
-      video: videoArray.length > 0 ? videoArray[0] : {},
-    },
-    revalidate: 10, // In seconds
-  };
-};
-
-export async function getStaticPaths() {
-  const listOfVideos = ['mYfJxlgR2jw', '4zH5iYM4wJo', 'KCPEHsAViiQ'];
-  const paths = listOfVideos.map(videoId => ({
-    params: { videoId },
-  }));
-
-  return { paths, fallback: 'blocking' };
-}
 
 export default Video;

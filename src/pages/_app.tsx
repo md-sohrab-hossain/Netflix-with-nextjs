@@ -7,10 +7,13 @@ import { useRouter } from 'next/router';
 import { magic } from 'libs/magic-client';
 import { Loading } from 'components/atom/loading';
 import Layout from 'components/organism/Layout';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
     (async () => {
@@ -38,9 +41,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return isLoading ? (
     <Loading overlay />
   ) : (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
