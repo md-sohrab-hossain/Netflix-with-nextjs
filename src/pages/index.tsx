@@ -35,24 +35,4 @@ const Home: NextPage = () => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const disneyVideos = await getVideos('disney trailer');
-//   const productivityVideos = await getVideos('Productivity');
-//   const travelVideos = await getVideos('travel');
-//   const popularVideos = await getPopularVideos();
-
-//   //  const netFlixOriginal = await getVideos(requests.fetchNetFlixOriginals);
-//   //  const trading = await getVideos(requests.fetchTreding);
-//   //  const topRated = await getVideos(requests.fetchTopRated);
-//   //  const actionMovies = await getVideos(requests.fetchActionMovies);
-//   //  const horrorMovies = await getVideos(requests.fetchHorroMovies);
-//   //  const romanceMovies = await getVideos(requests.fetchRomanticMovies);
-//   //  const documentries = await getVideos(requests.fetchDocumentaries);
-
-//   return {
-//     props: { disneyVideos, travelVideos, productivityVideos, popularVideos },
-//     // props: { netFlixOriginal, trading, topRated, actionMovies, horrorMovies, romanceMovies, documentries },
-//   };
-// };
-
 export default Home;
