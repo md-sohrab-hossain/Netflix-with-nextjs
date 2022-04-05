@@ -27,22 +27,28 @@
     align-items: center;
 
     @include sp {
-      display: none;
+      max-width: 40%;
+      min-width: 20%;
+      margin-right: 2rem;
     }
 
     &--logo {
       margin-left: 4rem;
 
       @include sp {
-        margin-left: 2rem;
+        margin-left: 0.5rem;
       }
     }
 
     &--items {
-      width: 70%;
+      width: 50%;
       margin-left: 4rem;
       display: flex;
       justify-content: space-evenly;
+
+      @include sp {
+        margin-left: 2rem;
+      }
 
       &-home,
       &-myList {
