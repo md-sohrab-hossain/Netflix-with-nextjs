@@ -6,10 +6,29 @@ import { useGetCommonVideos } from 'api/useGetCommonVideos';
 import { useGetPopularVideos } from 'api/useGetPopularVideos';
 
 const Home: NextPage = () => {
-  const { data: disneyVideos = [] } = useGetCommonVideos('disney', 'disney trailer');
-  const { data: productivityVideos = [] } = useGetCommonVideos('productivity', 'Productivity');
-  const { data: travelVideos = [] } = useGetCommonVideos('travel', 'travel');
-  const { data: popularVideos = [] } = useGetPopularVideos('popular');
+  const {
+    data: disneyVideos = [],
+    isLoading: disneyVideoLoading,
+    error: disneyVideoError,
+  } = useGetCommonVideos('disney', 'disney trailer');
+
+  const {
+    data: productivityVideos = [],
+    isLoading: productivityVideoLoading,
+    error: productivityVideoError,
+  } = useGetCommonVideos('productivity', 'Productivity');
+
+  const {
+    data: travelVideos = [],
+    isLoading: travelVideoLoading,
+    error: travelVideoError,
+  } = useGetCommonVideos('travel', 'travel');
+
+  const {
+    data: popularVideos = [],
+    isLoading: popularVideoLoading,
+    error: popularVideoError,
+  } = useGetPopularVideos('popular');
 
   return (
     <div className="p-home">
@@ -26,10 +45,37 @@ const Home: NextPage = () => {
           videoId="bwzLiQZDw2I"
         />
 
-        <CardList title="Disney" size="large" video={disneyVideos} />
-        <CardList title="Travel" size="small" video={travelVideos} />
-        <CardList title="Productivity" size="medium" video={productivityVideos} />
-        <CardList title="Popular" size="small" video={popularVideos} />
+        <CardList
+          title="Disney"
+          size="large"
+          video={disneyVideos}
+          isLoading={disneyVideoLoading}
+          error={disneyVideoError}
+        />
+
+        <CardList
+          title="Travel"
+          size="small"
+          video={travelVideos}
+          isLoading={travelVideoLoading}
+          error={travelVideoError}
+        />
+
+        <CardList
+          title="Productivity"
+          size="medium"
+          video={productivityVideos}
+          isLoading={productivityVideoLoading}
+          error={productivityVideoError}
+        />
+
+        <CardList
+          title="Popular"
+          size="small"
+          video={popularVideos}
+          isLoading={popularVideoLoading}
+          error={popularVideoError}
+        />
       </main>
     </div>
   );
