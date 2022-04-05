@@ -5,12 +5,14 @@ import { Modal } from 'components/organism/modal';
 import Footer from 'components/atom/modal-footer';
 import { useGetVideoById } from 'api/useGetVideoById';
 import { Loading } from 'components/atom/loading';
+import Heading from 'components/atom/heading';
 
 const Video: NextPage = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [modalResize, setModalReSize] = useState<boolean>(false);
-  const { data, isLoading } = useGetVideoById('bwzLiQZDw2I');
+  const videoId: string = String(router.query.videoId);
+  const { data, isLoading, error } = useGetVideoById(videoId);
 
   useEffect(() => {
     const handleComplete = () => {
@@ -36,6 +38,7 @@ const Video: NextPage = () => {
 
   const getFooter = () => {
     if (isLoading) return <Loading />;
+    if (error instanceof Error) return <Heading tag="h4">{error.message}</Heading>;
     const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 } } = data[0];
 
     return (

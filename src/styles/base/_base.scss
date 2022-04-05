@@ -24,11 +24,13 @@ a {
 
 * {
   scrollbar-width: thin;
+  scroll-behavior: smooth;
   scrollbar-color: $color-secondary-grey transparent;
 }
 
 *::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 *::-webkit-scrollbar-track {
