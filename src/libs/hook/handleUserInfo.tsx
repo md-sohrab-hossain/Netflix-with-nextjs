@@ -1,27 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
 import { magic } from 'libs/magic-client';
+import { useQuery } from 'react-query';
 
 export const useUserInfo = () => {
-  const [userEmail, setUsername] = useState<string>('');
-  const [didToken, setDidToken] = useState<string>('');
+  const { data: userEmail, isSuccess } = useQuery(['userInfo'], async () => await (magic as any)?.user?.getMetadata(), {
+    staleTime: 5000,
+    select: data => data.email,
+  });
 
-  const getUserInfo = useCallback(async () => {
-    try {
-      const { email, issuer } = await (magic as any)?.user?.getMetadata();
-      const didToken = await (magic as any)?.user?.getIdToken();
-      if (email) {
-        setUsername(email);
-        setDidToken(didToken);
-      }
-    } catch (error) {
-      console.error('Error retrieving email', error);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    getUserInfo();
-  }, [getUserInfo]);
+  const { data: didToken } = useQuery(['didToken'], async () => await (magic as any)?.user?.getIdToken(), {
+    staleTime: 5000,
+    enabled: !!isSuccess,
+  });
 
   return { userEmail, didToken };
 };
